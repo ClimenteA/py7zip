@@ -4,6 +4,8 @@ Unzipping files with 7zip and python fast!
 The modules is for a custom use the main func of the module is this one:
 ```
 
+import subprocess
+
 def execute7z(zipPathInput, zipPassword, zipPathOutput):
     """Excecute 7zip batch command using subprocess call
        x {} - full path to zip; -p"{}" - password; -o{} - output path of unzip
