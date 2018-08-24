@@ -1,7 +1,9 @@
 # py7zip
 Unzipping files with 7zip and python fast!
 
-The modules is for a custom use the main func of the module is this one:
+The main idea of this module is this:
+
+
 ```
 
 import subprocess
