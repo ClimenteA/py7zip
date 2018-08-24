@@ -121,6 +121,25 @@ def checkZIP(zipFilePath, unzippedFilePath):
         
 
 
+def checkPassforZip(zip_file_path, passwordsli, re_search_criteria=".pdf"):
+    """Check for a zip file what password works by extracting one file"""
+    files = zipFilesNames(zip_file_path)
+    file = [f for f in files if re.search(re_search_criteria, f)][-1]
+    
+    with ZipFile(zip_file_path, 'r') as z:
+        for p in passwordsli:
+            try:
+                pstr = "{}".format(p)
+                z.extract(file, path="/bin", pwd=bytes(pstr.encode()))
+                print("Password found: ", p)
+                return p
+            except RuntimeError:
+                #print("Password nok..")
+                pass
+
+
+
+
 try:
     print("\n\nPlease wait...\n")
     createUnzipDirs(unzip_files_paths)
@@ -134,6 +153,7 @@ try:
 
 
     passdf = pd.read_excel("zipPassword.xlsx")
+    passwordslist = passdf["Password"].tolist()
     passdf_idx = passdf.index.tolist()
 
     nokli = []
@@ -148,7 +168,15 @@ try:
                 password = passdf.loc[i, "Password"]
 
                 if re.search(str(ac), zfName) and str(year) == str(nestedYear_found):
+                    if not isinstance(checkPassforZip(zfp, [password]), str):
+                        password = checkPassforZip(zfp, passwordslist)
+                        if not isinstance(password, str):
+                            msg = "\n\nPassword not found for > {}\n".format(zfp)
+                            err.write(msg)
+                            continue
+
                     process = execute7z(zfp, password, unzip_files_paths[j])
+
                     if process == 0:
                         if checkZIP(zfp, unzip_files_paths[j]):
                             print("\nCool unzipping it's ok!\n")
