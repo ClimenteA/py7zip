@@ -28,3 +28,5 @@ if process == 0:
     #etc
    
 ```
+
+You can add a new arg to execute7z where you can put diferent 7zip CLI  commands.
