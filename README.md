@@ -29,4 +29,6 @@ if process == 0:
    
 ```
 
-You can add a new arg to execute7z where you can put diferent 7zip CLI  commands.
+You can add a new arg to execute7z where you can put diferent 7zip CLI commands.
+Go here https://www.7-zip.org/download.html and download the standalone console version.
+Go here https://www.dotnetperls.com/7-zip-examples for more 7zip commands.
