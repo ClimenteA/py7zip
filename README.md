@@ -20,7 +20,7 @@ def execute7z(zipPathInput, zipPassword, zipPathOutput):
 #do stuff
 #do stuff
 
-process = execute7z(zfp, password, unzip_files_paths)
+process = execute7z(zfp, password, unzip_files_path)
 
 if process == 0:
     #unzipping done
