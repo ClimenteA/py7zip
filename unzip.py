@@ -333,7 +333,7 @@ elif skip.lower() == "y":
     print("\nPlease wait..")
     try:
         masterUnzip(unzippedPath)
-        print("\n\nDone!\nFor any issue contact AtexisRO: alin.climente@atexis.eu")
+        print("\n\nDone!\n")
         input("Press enter to exit..")
     except Exception as e:
         print("\n\nGot this error: ", e)
